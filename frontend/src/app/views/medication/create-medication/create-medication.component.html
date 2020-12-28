@@ -1,0 +1,26 @@
+<div class="col-md-6 offset-md-3">
+  <h3> Create Medication </h3>
+  <form (ngSubmit) = "onSubmit()">
+
+    <div class="form-group">
+      <label> Name</label>
+      <input type="text" class ="form-control" id = "Name"
+             [(ngModel)] = "medication.name" name = "Name">
+    </div>
+
+    <div class="form-group">
+      <label> Dosage</label>
+      <input type="text" class ="form-control" id = "Dosage"
+             [(ngModel)] = "medication.dosage" name = "Dosage">
+    </div>
+
+    <div class="form-group">
+      <label> Side Effects</label>
+      <input type="text" class ="form-control" id = "sideEffects"
+             [(ngModel)] = "medication.sideEffects" name = "sideEffects">
+    </div>
+
+    <button class = "btn btn-success" type ="submit">Submit</button>
+
+  </form>
+</div>

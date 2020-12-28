@@ -1,0 +1,69 @@
+<div class="container">
+  <h2> Persons</h2>
+  <div *ngIf="users.length == 0">
+    <div class="alert alert-info" role="alert">Loading...</div>
+  </div>
+
+  <div *ngIf="users.length > 0">
+    <table mat-table [dataSource]="users" class="mat-elevation-z8">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let user"> {{user.name}}</td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email</th>
+        <td mat-cell *matCellDef="let user"> {{user.email}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h3>Insert new person</h3>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && requestedForm.name.errors }" />
+          <div *ngIf="submitted && requestedForm.name.errors" class="invalid-feedback">
+            <div *ngIf="requestedForm.name.errors.required">Name is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && requestedForm.email.errors }" />
+          <div *ngIf="submitted && requestedForm.email.errors" class="invalid-feedback">
+            <div *ngIf="requestedForm.email.errors.required">Email is required</div>
+            <div *ngIf="requestedForm.email.errors.email">Email must be a valid email address</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Iban</label>
+          <input type="iban" formControlName="iban" class="form-control" [ngClass]="{ 'is-invalid': submitted && requestedForm.iban.errors }" />
+          <div *ngIf="submitted && requestedForm.iban.errors" class="invalid-feedback">
+            <div *ngIf="requestedForm.iban.errors.required">Iban is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Address</label>
+          <input type="address" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && requestedForm.address.errors }" />
+          <div *ngIf="submitted && requestedForm.address.errors" class="invalid-feedback">
+            <div *ngIf="requestedForm.address.errors.required">Address is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary">Insert</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

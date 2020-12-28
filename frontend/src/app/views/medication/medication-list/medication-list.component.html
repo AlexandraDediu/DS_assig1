@@ -1,0 +1,30 @@
+<h2> Medication List</h2>
+
+<br>
+
+
+<button (click)="createMedication()" class="btn btn-info"> Add new Medication</button>
+
+<br>
+<br>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th> Name</th>
+    <th> Dosage</th>
+    <th> Side effects</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let medication of medications">
+    <td> {{ medication.name }} </td>
+    <td> {{ medication.dosage}} </td>
+    <td> {{ medication.sideEffects}} </td>
+    <td>
+      <button [routerLink] = "['/update-medication',medication.id]" class="btn btn-info"> Update</button>
+      <button (click)="deleteMedication(medication.id)" class="btn btn-danger" style="margin-left: 10px"> Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
